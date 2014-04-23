@@ -1,37 +1,37 @@
 #include "MillerRabin.h"
+#include <time.h>
 
 mpreal getPrime(int digits, int iterations);
 
-/*
+int DIGITS = 1000;
+
 int main() {
 
 	srand(time(NULL));
 	mpfr::random(time(NULL));
 
 	double wallTime;
-	int digits = 1300;
-	mpreal::set_default_prec(mpfr::digits2bits(digits));
-	cout.precision(digits);
+	int maxDigits = 2 * DIGITS + 1;
+	mpreal::set_default_prec(mpfr::digits2bits(maxDigits));
+	cout.precision(maxDigits);
 
-	mpreal myPrime = getPrime(5, 10);
-	cout << myPrime << endl;
-	getchar();
+	// Time computations
 	double lastIterLength = 0;
 	double sum = 0;
-	cout << "Finding primes..." << endl;
-	int index;
-	for (index = 1; true; ++index) {
+
+	mpreal myPrime;
+	cout << "Finding prime with " << DIGITS << " digits.." << endl;
+	for (int i = 1; true; ++i) {
 		wallTime = omp_get_wtime();
-		myPrime = getPrime(600, 10);
+		myPrime = getPrime(DIGITS, 10);
 		lastIterLength = (omp_get_wtime() - wallTime);
 		sum += lastIterLength;
-		cout << "Average time after " << index << " iterations: " << sum/index << endl;
-		if (index == 1000)
-			getchar();
+		cout << "Prime found: \n" << myPrime << "\n" << endl;
+		cout << "Average time after " << i << " iterations: " << sum/i << "." << endl;
+		cout << "Press enter to find another " << DIGITS << " digit prime." << endl;
+		getchar();
 	}
-
 }
-*/
 
 mpreal getPrime(int digits, int iterations) {
 	int sizeofNumbers = 100;

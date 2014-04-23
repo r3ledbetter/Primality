@@ -1,12 +1,11 @@
 #include <iostream>
 #include <stdlib.h>
-#include <time.h> //rmv?
 #include <cmath>
 #include <vector>
 
 #include <omp.h>
 
-#include "../mpreal.h"
+#include "mpreal.h"
 
 using mpfr::mpreal;
 using mpfr::mod;
